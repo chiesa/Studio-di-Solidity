@@ -22,8 +22,8 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
         tokenUris = await handleTokenUris()
     }
 
-    console.log(await ethers.getContract("VRFCoordinatorV2Mock"))
-    /*
+    log(network.name)
+    log(await ethers.getContract("VRFCoordinatorV2Mock"))
     if(developmentChains.includes(network.name)){
         vrfCoordinatorV2Mock = await ethers.getContract("VRFCoordinatorV2Mock")
         console.log(vrfCoordinatorV2Mock)
@@ -46,7 +46,6 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
         networkConfig[chainId].callbackGasLimit,
         networkConfig[chainId].mintFee
     ]
-    */
 }
 
 async function handleTokenUris(){
