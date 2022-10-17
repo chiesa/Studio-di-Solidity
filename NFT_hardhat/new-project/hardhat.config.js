@@ -1,6 +1,5 @@
 require('dotenv').config();
-require("@nomicfoundation/hardhat-toolbox"); 
-require("@nomiclabs/hardhat-ethers");
+require('@nomiclabs/hardhat-ethers'); 
 require('@openzeppelin/hardhat-upgrades');
 require("hardhat-deploy");
 
