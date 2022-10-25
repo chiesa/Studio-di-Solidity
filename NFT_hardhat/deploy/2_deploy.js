@@ -21,6 +21,8 @@ const metadataTemplate = {
     ]
 }
 
+const FUND_AMOUT = "100000000000000000"
+
 module.exports = async ({ getNamedAccounts, deployments }) => {
     const { deploy, log } = deployments
     const { deployer } = await getNamedAccounts()
@@ -37,7 +39,12 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     }
     */
 
-    let tokenUris
+    // after we define the array link in Pinata we can copy here. This the last step in the program
+    let tokenUris = [
+        'ipfs://QmdVo4VJLAcbVAvJyauCMRiT9eC94HdUwXwswWdpG1gz5i',
+        'ipfs://QmVdJSrJDgRYPL7vB13y5xpA2UsRhMPFMUppJ1AXbJQVju',
+        'ipfs://QmNVnozFTT58R8PkCiDNX8D1AFvbeBeMoKb2XiW3YDht66'
+      ]
     let vrfCoordinatorV2Address, subscriptionId, vrfCoordinatorV2Mock
 
     // get IPFS hashes of our images
@@ -46,16 +53,19 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     //      2. Pinata https://www.pinata.cloud
     //      3. nft.storage https://nft.storage
     // in this example we use the second (Pinata):
-    if(process.env.UPLOAD_TO_PINATA == "true"){
+    if(process.env.UPLOAD_TO_PINATA == "true"){ //after we set the tokenUris, we can change UPLOAD_TO_PINATA in false
         tokenUris = await handleTokenUris()
+        console.log(tokenUris)
     }
 
     if (!developmentChains.includes(network.name)) {
         vrfCoordinatorV2Mock = await ethers.getContract("VRFCoordinatorV2Mock")
         vrfCoordinatorV2Address = vrfCoordinatorV2Mock.address
+        console.log(vrfCoordinatorV2Address)
         const tx = await vrfCoordinatorV2Mock.createSubscription()
         const txReceipt = await tx.wait(1)
         subscriptionId = txReceipt.events[0].args.subId
+        await vrfCoordinatorV2Mock.fundSubscription(subscriptionId,FUND_AMOUT)
     } else {
         vrfCoordinatorV2Address = networkConfig[chainId].vrfCoordinatorV2
         subscriptionId = networkConfig[chainId].subscriptionId
@@ -63,14 +73,31 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
 
     log("----------------------------------------------------")
     
-    await storeImages(imagesLocation)
-    /*const args = [
-        vrfCoordinatorV2Address, 
-        subscriptionId, 
-        networkConfig[chainId].gasLane, 
+    // after I store the Images I don't need anymore the next line because: I already upload in IPFS
+    // await storeImages(imagesLocation)
+    const args = [
+        vrfCoordinatorV2Address,
+        subscriptionId,
         networkConfig[chainId].callbackGasLimit,
-        networkConfig[chainId].mintFee
-    ]*/
+        networkConfig[chainId].gasLane,
+        tokenUris,
+        networkConfig[chainId].mintFee,
+    ]
+
+    const randomIpfsNFT = await deploy("RandomIPFS",{
+        from: deployer,
+        args: args,
+        log: true,
+        waitConfirmations: network.config.blockConfermations || 1,
+    })
+    log("----------------------------------------------------")
+
+    // Verify the deployment
+    
+    if (developmentChains.includes(network.name) && process.env.ETHERSCAN_API_KEY) {
+        log("Verifying...")
+        await verify(randomIpfsNFT.address, arguments)
+    }
 }
 
 async function handleTokenUris(){

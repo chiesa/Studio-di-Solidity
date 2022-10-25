@@ -37,7 +37,7 @@
 
 "@chainlink/contracts@^0.5.1":
   version "0.5.1"
-  resolved "https://registry.npmjs.org/@chainlink/contracts/-/contracts-0.5.1.tgz"
+  resolved "https://registry.npmjs.org/@chainlink/contracts/-/contracts-0.5.1.tgz#68e7447ba8c1eccfbb760bacc93aced2eef60945"
   integrity sha512-3PDBJ38Sd6Ml9h7FNK/tZQti+kTCdXUq1qzE6E59CnlzycsV9ElPvf2hTvs9Mi9C6pEx2Mmw9yhZMfBktYUInQ==
   dependencies:
     "@eth-optimism/contracts" "^0.5.21"

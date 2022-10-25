@@ -8,6 +8,9 @@ yarn hardhat deploy --tags basicnft --network hardhat
 2. Random IPFS: il contratto permette di minare degli NFT assegnati randomicamente con rarità randomica. Per far questo si usa l'interfaccia: @chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol.
 Per il deploy lanciare il comando: 
 ```
-yarn hardhat deploy --tags deploy_mocks,IPFSRandom --network hardhat
+yarn hardhat deploy --tags mocks,IPFSRandom --network hardhat
 ```
-3. Dynamic SVG NFT
+Notare che questo programma è stato costruito in 2 differenti fasi: la prima permetteva dinamicamente l'upload delle immagini su Pinata. In una seconda fase, vengono presi gli URL delle immagini, inseriti direttamente nel file di deploy e viene cambiata la variabile UPLOAD_TO_PINATA in .env da true a false e non viene piu chiamato Pinata.
+3. **Dynamic SVG (Scalable Vector Graphics) NFT**: il contratto permette di caricare gli **NFT on-chain** but that means the operation will be very expensive. Il programma sarà **dinamica**:
+Se il prezzo di ETH è sopra a X -> SMILE
+se è sotto a X -> SAD

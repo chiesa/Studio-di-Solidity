@@ -89,6 +89,9 @@ contract RandomIPFS is VRFConsumerBaseV2, ERC721URIStorage{
         uint256 nodded = randomWords[0] % MAX_CHANGE;
         Type NFTType = getType(nodded);
 
+        //update tokenConter
+        tokenCounter = tokenCounter + 1;
+
         // mint the NFT
         _safeMint(NFTowner, tokenId);
         // set token URI

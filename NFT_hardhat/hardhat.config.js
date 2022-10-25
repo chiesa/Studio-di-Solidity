@@ -3,19 +3,34 @@ require("@nomicfoundation/hardhat-toolbox");
 require("@nomiclabs/hardhat-ethers");
 require('@openzeppelin/hardhat-upgrades');
 require("hardhat-deploy");
+require("@nomiclabs/hardhat-waffle");
+
 
 const { RPC_URL, PRIVATE_KEY } = process.env;
 
 module.exports = {
-     defaultNetwork: "goerli",
+     defaultNetwork: "hardhat",
      networks: {
+        hardhat: {
+            chainId: 31337,
+            // gasPrice: 130000000000,
+        },
         goerli:{
           url: RPC_URL,
           accounts: [PRIVATE_KEY],
+          chainId: 5,
+          blockConfirmations: 6,
         },
      },
      solidity: {
-         version: "0.8.7",
+      compilers: [
+          {
+              version: "0.8.7",
+          },
+          {
+              version: "0.6.6",
+          },
+      ],
      },
      namedAccounts: {
         deployer: {
