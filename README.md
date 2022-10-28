@@ -24,11 +24,14 @@ Nella cartella ether-simple-storage, si riprende il contratto SimpleStorage.sol 
 ## HardHat_Deploy
 Nella cartella Hardhat_Deploy è presente un contratto e viene utilizzato il tool **Hardhat**. Il contratto è un contratto standard e si studia il **processo di deploy dei file in reti di test (nell'esempio la rete Goerli) e nella mainnet utilizzando JS e Jnode**.
 
-## FundMe_HardHat
+## FundMe_HardHat (BACK_END)
 Un'introduzione delle funzionalità di HardHat con l'utilizzo del contratto FundMe.sol precedentemente scritto
 
-## FundMe_HTML
+## FundMe_HTML (FRONT_END)
 Il programma crea una piccola interfaccia HTML al contratto FundMe precedentemente creato
+
+## Lottery (BACKEND)
+Creiamo un contratto lotteria nel quale è possibile comprare ticket e partecipare a una lotteria. Il vincitore ottiene tutti i soldi nel contratto.
 
 ## Encoding
 Il contratto è uno studio dei processi di encode e decode passando per la libreria abi, cifrando in base64 e linguaggio macchina di EVM (www.evm.codes)
