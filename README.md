@@ -24,6 +24,12 @@ Nella cartella ether-simple-storage, si riprende il contratto SimpleStorage.sol 
 ## HardHat_Deploy
 Nella cartella Hardhat_Deploy è presente un contratto e viene utilizzato il tool **Hardhat**. Il contratto è un contratto standard e si studia il **processo di deploy dei file in reti di test (nell'esempio la rete Goerli) e nella mainnet utilizzando JS e Jnode**.
 
+## FundMe_HardHat
+Un'introduzione delle funzionalità di HardHat con l'utilizzo del contratto FundMe.sol precedentemente scritto
+
+## FundMe_HTML
+Il programma crea una piccola interfaccia HTML al contratto FundMe precedentemente creato
+
 ## Encoding
 Il contratto è uno studio dei processi di encode e decode passando per la libreria abi, cifrando in base64 e linguaggio macchina di EVM (www.evm.codes)
 
@@ -37,8 +43,7 @@ In particolare vogliamo:
  - "function selector" cioè i primi 4 byte della function signature dopo l'encode in EVM (es. 0xa9059cbb)
 In oltre, nel contratto "CallFunctionWithoutContract" si analizza un come questo contratto possa modificare i parametri di un altro contratto (nel caso specifico "call"). Per farlo funzionare: fare deploy del contratto "callAnything", passare come parametro nella fase di deploy di "CallFunctionWithoutContract" l'indirizzo di call. 
 
-
-## NFT_hardhat [in progress]
+## NFT_hardhat
 Nella cartella NFT_hardhat vi è uno studio di differenti forme di **NFT** con differenti possibilità di creazione in **IPFS** e di deploy. In particolare nel si stanno sviluppando e facendo i deploy per tre differenti casi: 
 1. **NFT Base**: si studia un caso base di NFT, dopo la creazione del NFT su IPFS con l'immagine sul localhost, viene fatto il deploy del contratto sulla testnet goerli.
 2. **IPFS Random**: si definisce come creare una collezione di NFT con un assegnazione randomica delle immagini e del livello di rarità a seguito di un mint. 
@@ -52,3 +57,18 @@ Nella cartella NFT_marketplace è presente un **progetto fullstack** in via di s
 NOTA: Il progetto è stato bloccato per approfondire il tema NFT e per tanto si è iniziato a lavorare su NFT_hardhat.**
 
 **TODO: (16:18:19)**
+
+## Solidity Style Guide
+(https://docs.soliditylang.org/en/v0.8.16/style-guide.html)
+Viene definito il seguente ordine in uno script solidity:
+ - Pragma statements
+ - Import statements
+ - Interfaces
+ - Libraries
+ - Contracts
+All'interno del contratto l'ordine invece è il seguente: 
+ - Type declarations
+ - State variables
+ - Events
+ - Modifiers
+ - Functions
