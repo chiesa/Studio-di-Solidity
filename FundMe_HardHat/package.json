@@ -1,6 +1,6 @@
 {
-  "name":"hardhat fund me",
-  "author":"Samuele Chiesa",
+  "name":"hardhat_fund_me",
+  "author":"Samuele_Chiesa",
   "version":"1.0.0",
   "devDependencies": {
     "@chainlink/contracts": "^0.5.1",
