@@ -49,7 +49,7 @@ module.exports = async ({getNamedAccounts, deployments}) => {
 
     if( !developmentChain.includes(network.name) && process.env.ETHERSCAN_API_KEY){
         // verify from ../utils/verify.js
-        verify(fundMe.address, [args])
+        await verify(fundMe.address, [args])
     }
     log("---------------------------------------------------------------------")
 }

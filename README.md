@@ -75,3 +75,12 @@ All'interno del contratto l'ordine invece è il seguente:
  - Events
  - Modifiers
  - Functions
+ 
+## NOTA ERRORE FREQUENTE: 
+Si è ripetuto diverse volte il seguente messaggio di errore: ```TypeError: Cannot read properties of undefined (reading 'getContract')``` o su altre funzione di ethers. La soluzione risulta essere l'aggiunta di ```require("@nomiclabs/hardhat-ethers");``` in hardhat.config.js
+Un altro errore frequente è quello di non trovare il contratto deployato in mock. Per questo bisogna mettere in ordine alfabetico i file di deploy con prima quelli che contengono il deploy di contratti che vengono usati successivamente (come Mock)
+
+```     Error: VM Exception while processing transaction: reverted with custom error 'InvalidConsumer()'
+    at VRFCoordinatorV2Mock.onlyValidConsumer (@chainlink/contracts/src/v0.8/mocks/VRFCoordinatorV2Mock.sol:72)
+    at VRFCoordinatorV2Mock.requestRandomWords (@chainlink/contracts/src/v0.8/mocks/VRFCoordinatorV2Mock.sol:147)
+``` soluzione: yarn add --dev @chainlink/contracts@0.4.1
