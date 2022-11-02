@@ -146,7 +146,7 @@ contract Lottery is VRFConsumerBaseV2, KeeperCompatibleInterface {
     }
 
     // questa funzione può essere pure perchè leggere una costante che non è in storage 
-    function getNumWords() public view returns(uint256){
+    function getNumWords() public pure returns(uint256){
         return NUMWORDS; // è identico che fare: "return 1;"
     }
 

@@ -39,6 +39,6 @@ module.exports = {
   },
   // questa sezione è di supporto hai test unit (con mock). Evita che il new Promise si blocchi per sempre in caso di nessuna risposta dall'evento
   mocha:{
-    timeout: 300000 // 300sec max
+    timeout: 1000000 // 1000sec max
   }
 };

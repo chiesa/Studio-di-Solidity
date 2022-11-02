@@ -56,9 +56,9 @@ developmentChain.includes(network.name)
                     })
 
                     // entering the lottery
-                    //const tx = await lottery.enterRaffle( {value: lotteryEntranceFee} )
-                    //console.log(tx)
-                    //await tx.wait(1)
+                    const tx = await lottery.enterRaffle( {value: lotteryEntranceFee} )
+                    console.log(tx)
+                    await tx.wait(1)
                     console.log("Time to wait..........")
 
                     const winStartingBalance = await accounts[0].getBalance

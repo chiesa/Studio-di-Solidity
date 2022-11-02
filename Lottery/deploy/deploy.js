@@ -10,7 +10,7 @@ module.exports = async ({getNamedAccounts, deployments}) => {
     const { deployer } = await getNamedAccounts()
     const chainId = network.config.chainId
 
-    const  _entraceAmount = ethers.utils.parseEther("0.1")
+    const  _entraceAmount = ethers.utils.parseEther("0.01")
     const gasLine = networkConfig[chainId]["gasLine"]
     let subscriptionId
     const callbackGasLimit = networkConfig[chainId]["callbackGasLimit"]
