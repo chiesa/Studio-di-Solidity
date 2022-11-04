@@ -30,25 +30,18 @@ developmentChain.includes(network.name)
                         try{
                             const recentWinner = await lottery.getRecentWinner()
                             const lotteryState = await lottery.getLotteryState()
-                            const winBalance = await accounts[0].getBalance()
+                            const winEndingBalance = await accounts[0].getBalance()
                             const endingTimeStamp = await lottery.getLatestTimeStamp()
-                            console.log("ARRIVO")
 
                             // mi aspetto non ci sia nessuno nella lotteria in quanto è appena consclusa e il valore deve essere settato a 0
                             await expect(lottery.getPlayer(0)).to.be.reverted
-                            console.log("ARRIVO")
-
                             assert.equal(recentWinner, accounts[0].address)
-
-                            console.log("ARRIVO")
                             assert.equal(lotteryState.toString(), "0")
-
-                            console.log("ARRIVO8")
                             assert.equal(winEndingBalance.toString(), winStartingBalance.add(lotteryEntranceFee).toString())
-
-                            console.log("ARRIVO")
                             assert(endingTimeStamp > stratingTimeStamp)
-                            console.log("ARRIVO10")
+
+                            console.log("Ending test..........")
+
                             res()
                         } catch (err){
                             rej(err)
@@ -57,12 +50,10 @@ developmentChain.includes(network.name)
 
                     // entering the lottery
                     const tx = await lottery.enterRaffle( {value: lotteryEntranceFee} )
-                    console.log(tx)
                     await tx.wait(1)
                     console.log("Time to wait..........")
 
-                    const winStartingBalance = await accounts[0].getBalance
-                    console.log(await winStartingBalance)
+                    const winStartingBalance = await accounts[0].getBalance()
                 })
             })
         })
