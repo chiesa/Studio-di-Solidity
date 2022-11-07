@@ -1,6 +1,9 @@
 ## FRONT END LOTTERY
 In questa cartella viene creato un frontend in NEXTJS per il contratto Lottery creato in precedenza. Quindi partiamo con ```yarn create next-app```
 
+### URL di riferimento
+https://shy-art-5568.on.fleek.co/ rete goerli
+
 ### connessione wallet
 Vediamo 2 modi differenti per la connessione dei wallet: 
 1. moralis (```yarn add react react-dom moralis react-moralis moralis-v1```)
@@ -39,6 +42,12 @@ Per far questo usiamo IPFS:
 3. su IPFS facciamo "set Pinning" dal pannello di controllo.
 (usando firefox ho un gateway di mezzo e quindi per fare ka chiamata al sito mi serve:)
 https://ipfs.io/ipfs/____[Incollare quello che esce da COPIA CID nel pannello IPFS]_____ 
+
+Simplier way to add to IPFS is:
+1. go to fleek.co and login (io con github)
+2. carichiamo da github la repo contenente il sito
+3. selezioniamo IPFS e quindi cartella out 
+4. inseriamo come comandi da eseguire ``` yarn && yarn build && yarn next export ```
 
 
 ## Getting Started

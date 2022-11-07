@@ -28,6 +28,9 @@ export default function LotteryEntrance(){
     // se chainID è in contractAddress allora procedo altrimenti il contratto non è deployato nella rete
     // contractAdressess[chainIdInt][0] = cotract[chainId][arrayPos=0]
     const lotteryAddress = chainIdInt in contractAdressess ? (contractAdressess[chainIdInt][0]) : null
+    console.log(`lotteryAddress is `)
+
+
 
     // definiamo entranceFee come un HOOK in quanto il valore viene settato con useEffect() alla seconda esecuzione. In caso non facciamo un hook a display il valore sarà null
     const [entranceFee, setEntranceFee] = useState("0")

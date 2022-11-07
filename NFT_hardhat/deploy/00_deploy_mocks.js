@@ -18,7 +18,6 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
             args: [BASE_FEE, GAS_PRICE_LINK],
         })
         await deploy("MockV3Aggregator", {
-            contract: MockV3Aggregator,
             from: deployer,
             log: true,
             args: [DECIMALS, INITIAL_PRICE],

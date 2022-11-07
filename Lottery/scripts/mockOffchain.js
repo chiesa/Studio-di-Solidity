@@ -1,7 +1,7 @@
 const { ethers, network } = require("hardhat")
 
 async function mockKeepers() {
-    const raffle = await ethers.getContract(0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9)
+    const raffle = await ethers.getContract("Lottery")
     const checkData = ethers.utils.keccak256(ethers.utils.toUtf8Bytes(""))
     const { upkeepNeeded } = await raffle.callStatic.checkUpkeep(checkData)
     if (upkeepNeeded) {

@@ -3,7 +3,8 @@ pragma solidity ^0.8.7;
 
 import '@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol';
 import '@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol';
-import '@openzeppelin/contracts/token/ERC721/ERC721.sol';
+//import '@openzeppelin/contracts/token/ERC721/ERC721.sol';
+// the  sequent lib have _setTokenURI()
 import '@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol';
 
 error RangeOutOfRanges();
@@ -64,7 +65,7 @@ contract RandomIPFS is VRFConsumerBaseV2, ERC721URIStorage{
     // user have to pay to mint an NFT
     // check payment
     modifier userPay (uint256 amount) {
-        require(amount >= mintPrice*1e18, "quantitativo inviato non sufficiente al pagamento");
+        require(amount >= mintPrice, "quantitativo inviato non sufficiente al pagamento");
         _;
     }
 
@@ -75,19 +76,25 @@ contract RandomIPFS is VRFConsumerBaseV2, ERC721URIStorage{
     }
 
     function mintNFT() public payable userPay(msg.value) returns(uint256 requestId) {
-        requestId = i_vrfCoordinator.requestRandomWords(i_gasLane, i_subscriptionID, RESQUEST_CONF, i_callbackGasLimit, NUM_WORDS);
+        requestId = i_vrfCoordinator.requestRandomWords(
+            i_gasLane, 
+            i_subscriptionID, 
+            RESQUEST_CONF, 
+            i_callbackGasLimit, 
+            NUM_WORDS
+        );
         s_requestID2Sender[requestId] = msg.sender;
         emit NFTRequest(requestId, msg.sender);
     }
 
-    function fulfillRandomWords(uint256 requestId, uint256[] memory randomWords) internal override {
+        function fulfillRandomWords(uint256 requestId, uint256[] memory randomWords) internal override {
         // defination the parameter to create the NFT
         address NFTowner = s_requestID2Sender[requestId];
         uint256 tokenId = tokenCounter;
 
         // defintation the rarable
-        uint256 nodded = randomWords[0] % MAX_CHANGE;
-        Type NFTType = getType(nodded);
+        uint256 modded = randomWords[0] % MAX_CHANGE;
+        Type NFTType = getType(modded);
 
         //update tokenConter
         tokenCounter = tokenCounter + 1;
@@ -103,8 +110,8 @@ contract RandomIPFS is VRFConsumerBaseV2, ERC721URIStorage{
     function getType(uint256 modded) public pure returns(Type) {
         uint256 cumulativeSum = 0;
         uint256[3] memory chanceArray = getChanceArray();
-        for(uint256 i = 0; i <= chanceArray.length; i++){
-            if(modded >= cumulativeSum && modded < cumulativeSum + chanceArray[i]){
+        for(uint256 i = 0; i < chanceArray.length; i++){
+            if(modded >= cumulativeSum && modded < chanceArray[i]){
                 return Type(i);
             }
             cumulativeSum += chanceArray[i];
