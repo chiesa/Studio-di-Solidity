@@ -31,8 +31,8 @@ contract DynamicSVGNFT is ERC721{
     // trigger is the price at the image will change
     function mintNFT(int _trigger) public {
         tokenIdtoTrigger[tokenCounter]=_trigger;
-        tokenCounter = tokenCounter+1;
         _safeMint(msg.sender, tokenCounter);
+        tokenCounter = tokenCounter+1;
         emit CreateNFT(tokenCounter, _trigger);
     }
 
@@ -80,5 +80,21 @@ contract DynamicSVGNFT is ERC721{
                 )
             )
         );
+    }
+
+        function getLowSVG() public view returns (string memory) {
+        return lowImageURI;
+    }
+
+    function getHighSVG() public view returns (string memory) {
+        return highImageURI;
+    }
+
+    function getPriceFeed() public view returns (AggregatorV3Interface) {
+        return priceFeed;
+    }
+
+    function getTokenCounter() public view returns (uint256) {
+        return tokenCounter;
     }
 }
