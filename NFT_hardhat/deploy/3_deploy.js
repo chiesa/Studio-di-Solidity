@@ -12,12 +12,6 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     let ethUsdPriceAdd
 
     if(developmentChains.includes(network.name)){
-        await deploy("MockV3Aggregator", {
-            from: deployer,
-            log: true,
-            args: [DECIMALS, INITIAL_PRICE],
-        })
-
         const EthUsdAggregator = await ethers.getContract("MockV3Aggregator")
         log(EthUsdAggregator.address)
         ethUsdPriceAdd = EthUsdAggregator.address
@@ -38,9 +32,9 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
 
     log("----------------------------------------------------")
     // Verify the deployment
-    if (developmentChains.includes(network.name) && process.env.ETHERSCAN_API_KEY) {
+    if (!developmentChains.includes(network.name) && process.env.ETHERSCAN_API_KEY) {
         log("Verifying...")
-        await verify(dynamicSvgNft.address, arguments)
+        await verify(dynamicSvgNft.address, args)
     }
 }
 

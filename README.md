@@ -1,5 +1,8 @@
 # STUDIO DI SOLIDITY
 
+In una prima fase di studio, sono andato ad approfondire come riportato nella cartella "Introduzione a Solidity" (https://github.com/chiesa/Introduzione-a-Solidity).
+Sono poi proseguito con i seguenti codici/progettini:
+
 ## SimpleStorage.sol
 E' un contratto elementare che permette il salvataggio di alcuni dati: un numero favorito e array di persone composte dal nome e numero favorito
 
@@ -25,13 +28,18 @@ Nella cartella ether-simple-storage, si riprende il contratto SimpleStorage.sol 
 Nella cartella Hardhat_Deploy è presente un contratto e viene utilizzato il tool **Hardhat**. Il contratto è un contratto standard e si studia il **processo di deploy dei file in reti di test (nell'esempio la rete Goerli) e nella mainnet utilizzando JS e Jnode**.
 
 ## FundMe_HardHat (BACK_END)
-Un'introduzione delle funzionalità di HardHat con l'utilizzo del contratto FundMe.sol precedentemente scritto
+Un'introduzione delle funzionalità di HardHat con l'utilizzo del contratto FundMe.sol
 
 ## FundMe_HTML (FRONT_END)
-Il programma crea una piccola interfaccia HTML al contratto FundMe precedentemente creato
+Il programma crea una piccola interfaccia HTML al contratto FundMe precedentemente creato (nel mio caso lanciata tramite il server di VS)
 
-## Lottery (BACKEND)
+## Lottery
+
+### Lottery (BACKEND)
 Creiamo un contratto lotteria nel quale è possibile comprare ticket e partecipare a una lotteria. Il vincitore ottiene tutti i soldi nel contratto.
+### Lottery (FRONTEND)
+In nextJS viene creato un frontend minimale per il backend contenente il contratto backend. (caricata sia localmente su IPFS che su fleek)
+In repo: https://github.com/chiesa/Lottery-FontEnd-NextJS-SmartContract
 
 ## Encoding
 Il contratto è uno studio dei processi di encode e decode passando per la libreria abi, cifrando in base64 e linguaggio macchina di EVM (www.evm.codes)

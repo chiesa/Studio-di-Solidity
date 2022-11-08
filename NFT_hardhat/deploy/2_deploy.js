@@ -28,17 +28,6 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     const { deployer } = await getNamedAccounts()
     const chainId = network.config.chainId
 
-    /* SI RISCONTRA UN PROBLEMA NEL RITROVARE VRDCoordinatorV2Mock deployato in deploy_mocks.js
-    if (chainId == 31337) {
-        log("Local network detected! Deploying mocks...")
-        await deploy("VRFCoordinatorV2Mock", {
-            from: deployer,
-            log: true,
-            args: [BASE_FEE, GAS_PRICE],
-        })
-    }
-    */
-
     // after we define the array link in Pinata we can copy here. This the last step in the program
     let tokenUris = [
         'ipfs://QmdVo4VJLAcbVAvJyauCMRiT9eC94HdUwXwswWdpG1gz5i',
@@ -58,7 +47,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
         console.log(tokenUris)
     }
 
-    if (!developmentChains.includes(network.name)) {
+    if (developmentChains.includes(network.name)) {
         vrfCoordinatorV2Mock = await ethers.getContract("VRFCoordinatorV2Mock")
         vrfCoordinatorV2Address = vrfCoordinatorV2Mock.address
         console.log(vrfCoordinatorV2Address)
@@ -94,9 +83,9 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
 
     // Verify the deployment
     
-    if (developmentChains.includes(network.name) && process.env.ETHERSCAN_API_KEY) {
+    if (!developmentChains.includes(network.name) && process.env.ETHERSCAN_API_KEY) {
         log("Verifying...")
-        await verify(randomIpfsNFT.address, arguments)
+        await verify(randomIpfsNFT.address, args)
     }
 }
 
