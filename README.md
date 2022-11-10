@@ -63,11 +63,9 @@ Non caricato in testnet
 
 
 ## NFT_marketplace [in progress]
-Nella cartella NFT_marketplace è presente un **progetto fullstack** in via di sviluppo per il quale attualmente è stato creato il contratto NFT_marketplace.sol dedicato allo scambio di NFT. 
-</br> **TODO: lato applicativo e deploy dei file. </br>
-NOTA: Il progetto è stato bloccato per approfondire il tema NFT e per tanto si è iniziato a lavorare su NFT_hardhat.**
+Nella cartella NFT_marketplace è presente un **progetto fullstack** in via di sviluppo per il quale attualmente è stato creato e testato localmente il backend: https://github.com/chiesa/NFTmarketplace_Backend 
 
-**TODO: (16:18:19)**
+**TODO: (24:48:00)**
 
 ## Solidity Style Guide
 (https://docs.soliditylang.org/en/v0.8.16/style-guide.html)
