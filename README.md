@@ -63,9 +63,10 @@ Non caricato in testnet
 
 
 ## NFT_marketplace [in progress]
-Nella cartella NFT_marketplace è presente un **progetto fullstack** in via di sviluppo per il quale attualmente è stato creato e testato localmente il backend: https://github.com/chiesa/NFTmarketplace_Backend 
-
-**TODO: (24:48:00)**
+Nella cartella NFT_marketplace è presente un **progetto fullstack** per la creazione di un marketplace elementare.
+Lo smartcontract/backend si trova al seguente link: https://github.com/chiesa/NFTmarketplace_Backend 
+Qui è possibile trovare il front-end: https://github.com/chiesa/NFTMarketplace_FrontEnd
+E qui le configurazioni di TheGraph: https://github.com/chiesa/NFTMarketplace_FrontEnd
 
 ## Solidity Style Guide
 (https://docs.soliditylang.org/en/v0.8.16/style-guide.html)
